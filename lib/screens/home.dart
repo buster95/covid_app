@@ -192,7 +192,7 @@ class HomePage extends StatelessWidget {
             children: [
               TextSpan(
                   text:
-                      '\nSi presentas algunos de los síntomas ocaciosionados por Covid-19, por favor ponte en contacto con personal calificado.',
+                      '\nSi presentas algunos de los síntomas ocasionados por Covid-19, por favor ponte en contacto con personal calificado.',
                   style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
             ],
