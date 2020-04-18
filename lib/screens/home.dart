@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
                                       fontSize: fontSizeButton),
                                 ),
                                 Text(
-                                  "Entra a la pagina",
+                                  "Entra a la página",
                                   style: TextStyle(
                                       fontFamily: "Nunito",
                                       color: Colors.white,
@@ -104,9 +104,9 @@ class HomePage extends StatelessWidget {
   Row buildRowPreventions(double imageWidht) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       buildPreventionCard(
-          imageWidht, "Lavate las manos", "assets/img/washing-hands.png"),
+          imageWidht, "Laváte las manos", "assets/img/washing-hands.png"),
       buildPreventionCard(
-          imageWidht, "Quetate en casa", "assets/img/house.png"),
+          imageWidht, "Quédate en casa", "assets/img/house.png"),
       buildPreventionCard(
           imageWidht, "Manten tu distancia", "assets/img/self-defense.png")
     ]);
@@ -192,7 +192,7 @@ class HomePage extends StatelessWidget {
             children: [
               TextSpan(
                   text:
-                      '\nSi presentas algunos de los sintomas ocaciosionados por Covid-19, por favor ponte en contacto con personal calificado.',
+                      '\nSi presentas algunos de los síntomas ocaciosionados por Covid-19, por favor ponte en contacto con personal calificado.',
                   style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
             ],

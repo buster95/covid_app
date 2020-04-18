@@ -34,7 +34,7 @@ class ContainerChart extends StatelessWidget {
               topLeft: Radius.circular(50), topRight: Radius.circular(50))),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
-          "Ultimos 10 dias - $countryCode \n",
+          "Últimos 10 días - $countryCode \n",
           style: TextStyle(
               color: Colors.grey[700],
               fontSize: fontSizeCardNumber -2,

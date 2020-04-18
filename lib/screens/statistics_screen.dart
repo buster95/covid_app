@@ -42,7 +42,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       body: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        buildSubtitle("Estadisticas"),
+        buildSubtitle("Estadísticas"),
         SizedBox(height: 10),
         Container(
           height: 60,

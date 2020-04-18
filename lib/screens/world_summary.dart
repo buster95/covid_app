@@ -1,7 +1,5 @@
 import 'package:covid_app/api/summary_api.dart';
 import 'package:covid_app/models/country.dart';
-import 'package:covid_app/models/summary.dart';
-import 'package:covid_app/screens/widgets/app_bar.dart';
 import 'package:covid_app/screens/widgets/subtititle.dart';
 import 'package:covid_app/utils/app_colors.dart';
 import 'package:covid_app/utils/format_number.dart';
