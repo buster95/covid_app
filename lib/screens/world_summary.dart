@@ -44,13 +44,15 @@ class WorldSummary extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   List<Country> data = snapshot.data.countries;
+                  data.sort((a, b) => b.totalDeaths.compareTo(a.totalDeaths));
 
                   return ListView(
                       physics: BouncingScrollPhysics(),
                       // itemExtent: 140,
                       // diameterRatio: 5,
                       children: List.generate(data.length, (i) {
-                        return buildContainerCountry(data[i], fontTitleSize, fontSubTitleSize);
+                        return buildContainerCountry(
+                            data[i], fontTitleSize, fontSubTitleSize);
                       }));
                 }
                 return Center(
@@ -101,12 +103,12 @@ class WorldSummary extends StatelessWidget {
           ]),
           SizedBox(height: 5),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            buildTextSpan("Infectados", subtitleSize, data.totalConfirmed, Colors.orangeAccent[400],
-                "assets/img/cough.png"),
-            buildTextSpan("Muertes", subtitleSize, data.totalDeaths, Colors.redAccent[400],
-                "assets/img/death.png"),
-            buildTextSpan("Recuperados", subtitleSize, data.totalRecovered, Colors.greenAccent[700],
-                "assets/img/healthy.png"),
+            buildTextSpan("Infectados", subtitleSize, data.totalConfirmed,
+                Colors.orangeAccent[400], "assets/img/cough.png"),
+            buildTextSpan("Muertes", subtitleSize, data.totalDeaths,
+                Colors.redAccent[400], "assets/img/death.png"),
+            buildTextSpan("Recuperados", subtitleSize, data.totalRecovered,
+                Colors.greenAccent[700], "assets/img/healthy.png"),
           ])
         ]));
   }
