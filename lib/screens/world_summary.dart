@@ -11,6 +11,8 @@ class WorldSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final fontTitleSize = width * .045;
+    final fontSubTitleSize = width * .04;
 
     return Scaffold(
       body: Stack(children: [
@@ -42,12 +44,13 @@ class WorldSummary extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   List<Country> data = snapshot.data.countries;
+
                   return ListView(
                       physics: BouncingScrollPhysics(),
                       // itemExtent: 140,
                       // diameterRatio: 5,
                       children: List.generate(data.length, (i) {
-                        return buildContainerCountry(data[i]);
+                        return buildContainerCountry(data[i], fontTitleSize, fontSubTitleSize);
                       }));
                 }
                 return Center(
@@ -65,7 +68,7 @@ class WorldSummary extends StatelessWidget {
     );
   }
 
-  Container buildContainerCountry(Country data) {
+  Container buildContainerCountry(Country data, titleSize, subtitleSize) {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
         padding: EdgeInsets.all(15),
@@ -79,40 +82,51 @@ class WorldSummary extends StatelessWidget {
             ],
             borderRadius: BorderRadius.circular(10)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            data.country,
-            style: TextStyle(
-                color: Colors.grey[700],
-                fontFamily: "Nunito",
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-          ),
+          Row(children: [
+            Image.network(
+              "https://www.countryflags.io/${data.countryCode.toLowerCase()}/flat/32.png",
+              height: 25,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              data.country,
+              style: TextStyle(
+                  color: Colors.grey[700],
+                  fontFamily: "Nunito",
+                  fontSize: titleSize,
+                  fontWeight: FontWeight.bold),
+            ),
+          ]),
           SizedBox(height: 5),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            buildTextSpan("Infectados", data.totalConfirmed, orangeApp, "assets/img/cough.png"),
-            buildTextSpan("Muertes", data.totalDeaths, redApp,"assets/img/death.png"),
-            buildTextSpan("Recuperados", data.totalRecovered, greenApp, "assets/img/healthy.png"),
+            buildTextSpan("Infectados", subtitleSize, data.totalConfirmed, Colors.orangeAccent[400],
+                "assets/img/cough.png"),
+            buildTextSpan("Muertes", subtitleSize, data.totalDeaths, Colors.redAccent[400],
+                "assets/img/death.png"),
+            buildTextSpan("Recuperados", subtitleSize, data.totalRecovered, Colors.greenAccent[700],
+                "assets/img/healthy.png"),
           ])
         ]));
   }
 
-  RichText buildTextSpan(String title, int data, Color color, path) {
-    return 
-      RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-              text: " $title\n",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Nunito",
-                  color: color,
-                  fontSize: 18),
-              children: [
-                TextSpan(
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey[700]),
-                    text: formatNumber(data))
-              ]))
-   ;
+  RichText buildTextSpan(
+      String title, double sizeText, int data, Color color, path) {
+    return RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+            text: " $title\n",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: "Nunito",
+                color: color,
+                fontSize: sizeText),
+            children: [
+              TextSpan(
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.grey[700]),
+                  text: formatNumber(data))
+            ]));
   }
 }
